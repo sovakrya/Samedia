@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <section class="category">
+
+
+        <div class="category__title__container">
+            <h2 class="category__title">Категории</h2>
+            <div class="category__title__decor-underline"></div>
+        </div>
+
+
+
+        <div class="category__item">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+
+            <div class="category__items__img-bottles"></div>
+
+            <span class="category__item__text">Пестициды</span>
+        </div>
+        <div class="category__item">
+
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+
+            <div class="category__items__img-sprout"></div>
+
+            <span class="category__item__text">Культуры</span>
+        </div>
+        <div class="category__item">
+
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+
+            <div class="category__items__img-pests"></div>
+
+            <span class="category__item__text">Вредители</span>
+        </div>
+        <div class="category__item">
+
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+
+            <div class="category__items__img-activeSubstance"></div>
+
+
+            <span class="category__item__text">Действующие вещества</span>
+
+        </div>
+
+        <img src="./icons/brownDecor.svg" width="116.3px" height="69px" class="category__elem1" />
+        <img src="./icons/greenLeaf.svg" width="198.98px" height="146.47px" class="category__elem2" />
+        <img src="./icons/greyDecor.svg" width="120.9px" height="114.1px" class="category__elem3" />
+        <img src="./icons/brownLeaf.svg" width="101px" height="97px" class="category__elem4" />
+        <div class="category__elem5"></div>
+
+    </section>
+
+</body>
+
+</html>
+
+<style scoped>
+    @import url('https://fonts.cdnfonts.com/css/impact');
+    @import url('https://fonts.cdnfonts.com/css/raleway-5');
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+    }
+
+
+    @keyframes move-circle1 {
+        from {
+
+            top: 20px;
+            left: 60px;
+            height: 50px;
+            width: 50px;
+            background-color: #FFFFFF66;
+        }
+
+        25% {
+
+            top: 20px;
+            left: 78px;
+            height: 70px;
+            width: 70px;
+            background-color: #ffffff96;
+        }
+
+        50% {
+            top: 40px;
+            left: 90px;
+            height: 80px;
+            width: 80px;
+            background-color: #ffffff71;
+        }
+
+        to {
+
+            top: 10px;
+            left: 120px;
+            height: 90px;
+            width: 90px;
+            background-color: #ffffff3d;
+        }
+    }
+
+
+    @keyframes move-circle2 {
+        from {
+
+            bottom: 10px;
+            right: 60px;
+            height: 90px;
+            width: 90px;
+            background-color: #FFFFFF66;
+        }
+
+        25% {
+
+            bottom: 20px;
+            right: 78px;
+            height: 140px;
+            width: 140px;
+            background-color: #ffffff63;
+        }
+
+        50% {
+            bottom: 40px;
+            right: 90px;
+            height: 80px;
+            width: 80px;
+            background-color: #ffffff71;
+        }
+
+        to {
+
+            bottom: 10px;
+            right: 120px;
+            height: 70px;
+            width: 70px;
+            background-color: #ffffff3d;
+        }
+    }
+
+
+    @keyframes move-circle3 {
+        from {
+
+            top: 5px;
+            right: 15px;
+            height: 150px;
+            width: 150px;
+            background-color: #FFFFFF66;
+        }
+
+        25% {
+
+            top: 35px;
+            right: 30px;
+            height: 120px;
+            width: 120px;
+            background-color: #ffffff96;
+        }
+
+        50% {
+            top: 45px;
+            right: 90px;
+            height: 95px;
+            width: 95px;
+            background-color: #ffffff71;
+        }
+
+        to {
+
+            top: 35px;
+            right: 110px;
+            height: 85px;
+            width: 85px;
+            background-color: #ffffff3d;
+        }
+    }
+
+
+    @keyframes move-circle4 {
+        from {
+
+            bottom: 30px;
+            left: 60px;
+            height: 50px;
+            width: 50px;
+            background-color: #FFFFFF66;
+        }
+
+        25% {
+
+            bottom: 20px;
+            left: 80px;
+            height: 70px;
+            width: 70px;
+            background-color: #ffffff96;
+        }
+
+        50% {
+            bottom: 40px;
+            left: 90px;
+            height: 80px;
+            width: 80px;
+            background-color: #ffffff71;
+        }
+
+        to {
+
+            bottom: 10px;
+            left: 120px;
+            height: 90px;
+            width: 90px;
+            background-color: #ffffff3d;
+        }
+    }
+
+
+    .category {
+        position: relative;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, 376px);
+        gap: 80px 32px;
+        padding: 153px 0;
+    }
+
+    .category__elem1 {
+        position: absolute;
+        right: 630px;
+        top: 10px;
+        transform: rotate(-10.41deg);
+
+    }
+
+    .category__elem2 {
+        position: absolute;
+        top: 110px;
+        left: 20px;
+        transition: 200ms;
+    }
+
+    .category__elem3 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    .category__elem4 {
+        position: absolute;
+        bottom: 86px;
+        right: 590px;
+        transition: 200ms;
+    }
+
+    .category__elem5 {
+        position: absolute;
+        overflow: hidden;
+        width: 345.64px;
+        height: 385.64px;
+        top: 60px;
+        right: 0px;
+    }
+
+    .category__elem5::before {
+        content: "";
+        background-image: url("./icons/yellowDecor.svg");
+        background-repeat: no-repeat;
+        width: 385.64px;
+        height: 385.64px;
+        position: absolute;
+        transform: rotate(20deg);
+    }
+
+    .category__title__container {
+        grid-column: 1/-1;
+        display: flex;
+        justify-self: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .category__title {
+        font-family: 'Impact', sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+        color: #201714;
+    }
+
+    .category__title__decor-underline {
+        width: 88px;
+        height: 4px;
+        border-radius: 99px;
+        background-color: #ffcc01;
+    }
+
+
+    .category__item {
+        position: relative;
+        min-width: 376px;
+        min-height: 188px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 6px;
+        padding: 16px;
+        background-color: #ffffff4d;
+        border: solid 2px #79c800;
+        border-radius: 16px;
+        box-shadow: 0px 4px 16px 0px #00000040;
+        cursor: pointer;
+        backdrop-filter: blur(5px);
+        z-index: 1;
+    }
+
+    .circle1 {
+        visibility: hidden;
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        top: 20px;
+        left: 60px;
+        border-radius: 50%;
+        animation: move-circle1;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out();
+    }
+
+    .circle2 {
+        visibility: hidden;
+        position: absolute;
+        bottom: 50px;
+        left: 140px;
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+        animation: move-circle2;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: cubic-bezier(0.1, 0.7, 1, 1);
+    }
+
+    .circle3 {
+        visibility: hidden;
+        position: absolute;
+        top: 10px;
+        right: 70px;
+        height: 86px;
+        width: 86px;
+        border-radius: 50%;
+        animation: move-circle3;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out();
+
+    }
+
+    .circle4 {
+        visibility: hidden;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        bottom: 5px;
+        border-radius: 50%;
+        animation: move-circle4;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: cubic-bezier(0.1, 0.7, 1, 1);
+    }
+
+
+    .category__items__img-bottles {
+        position: absolute;
+        background-image: url('./icons/bottles.svg');
+        background-repeat: no-repeat;
+        background-position-y: bottom;
+        height: 110px;
+        width: 180px;
+        align-self: flex-end;
+        top: 0;
+    }
+
+    .category__item:hover>.category__items__img-bottles {
+        background-image: url('./icons/openBottles.svg');
+        background-repeat: no-repeat;
+        width: 180px;
+        height: 110px;
+
+    }
+
+    .category__items__img-sprout {
+        position: absolute;
+        background-repeat: no-repeat;
+        bottom: 50px;
+        right: 20px;
+        background-image: url('./icons/sprout.svg');
+        height: 90px;
+        width: 90px;
+
+    }
+
+    .category__item:hover>.category__items__img-sprout {
+        background-image: url('./icons/sproutedSprout.svg');
+        background-repeat: no-repeat;
+        width: 90px;
+        height: 90px;
+
+    }
+
+
+
+    .category__items__img-pests {
+        position: absolute;
+        background-image: url('./icons/pests.svg');
+        background-repeat: no-repeat;
+        top: 15px;
+        right: 0px;
+        height: 138px;
+        width: 245px;
+
+    }
+
+    .category__item:hover>.category__items__img-pests {
+        background-image: url('./icons/killedPests.svg');
+        background-repeat: no-repeat;
+        height: 138px;
+        width: 245px;
+
+    }
+
+
+    .category__items__img-activeSubstance {
+        position: absolute;
+        background-repeat: no-repeat;
+        right: 0px;
+        top: 15px;
+        background-image: url('./icons/activeSubstance.svg');
+        height: 138px;
+        width: 245px;
+
+    }
+
+    .category__item:hover>.category__items__img-activeSubstance {
+        background-image: url('./icons/anotherActiveSubstance.svg');
+        background-repeat: no-repeat;
+        height: 138px;
+        width: 245px;
+
+    }
+
+    .category__item:hover>.circle1 {
+        visibility: visible;
+
+    }
+
+    .category__item:hover>.circle2 {
+        visibility: visible;
+
+    }
+
+    .category__item:hover>.circle3 {
+        visibility: visible;
+
+    }
+
+    .category__item:hover>.circle4 {
+        visibility: visible;
+
+    }
+
+    .category>:nth-child(2):hover~.category__elem2 {
+        top: 90px;
+        left: 0;
+    }
+
+    .category>:nth-child(3):hover~.category__elem2 {
+        top: 90px;
+        left: 20px;
+    }
+
+    .category>:nth-child(4):hover~.category__elem2 {
+        top: 90px;
+        left: 36px;
+    }
+
+
+    .category>:nth-child(5):hover~.category__elem2 {
+        top: 90px;
+        left: 46px;
+    }
+
+    .category>:nth-child(2):hover~.category__elem4 {
+        bottom: 76px;
+        right: 520px;
+    }
+
+    .category>:nth-child(3):hover~.category__elem4 {
+        bottom: 76px;
+        right: 540px;
+    }
+
+    .category>:nth-child(4):hover~.category__elem4 {
+        bottom: 76px;
+        right: 570px;
+    }
+
+
+    .category>:nth-child(5):hover~.category__elem4 {
+        bottom: 76px;
+        right: 600px;
+    }
+
+
+
+    .category__item:hover {
+        background: linear-gradient(0deg, rgba(121, 200, 0, 0.4), rgba(121, 200, 0, 0.4)),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+        ;
+    }
+
+
+
+
+    .category__item__text {
+        align-self: flex-start;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28.18px;
+        letter-spacing: -1px;
+        color: #201714;
+        width: min-content;
+    }
+
+    /* PC */
+    @media (max-width: 1892px) {
+        .category__elem2 {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1150),
+    (max-width: 1599px) {
+        .category__elem1 {
+            height: 100px;
+            right: 350px;
+
+        }
+
+        .category__elem4 {
+            display: none;
+        }
+
+        .category__elem5 {
+
+            top: 90px;
+
+        }
+
+    }
+
+    /* MOBILE */
+    @media (max-width: 799px) {
+        .category__elem1 {
+            display: none;
+
+        }
+
+        .category__elem3 {
+            display: none;
+        }
+
+
+        .category__elem5 {
+
+            display: none;
+
+        }
+
+        .category__title__container {
+
+            justify-self: center;
+
+        }
+
+    }
+
+    @media (max-width: 415px) {
+        .category {
+
+            grid-template-columns: repeat(auto-fit, 300px);
+
+        }
+
+        .category__item {
+
+            min-width: 250px;
+
+        }
+
+        .category__item__text {
+
+            font-weight: 700;
+            font-size: 18px;
+            z-index: 1;
+
+        }
+
+    }
+</style>
