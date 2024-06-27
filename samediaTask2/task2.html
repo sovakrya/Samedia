@@ -12,7 +12,6 @@
 <body>
     <div id="goodAnswer" class="hidden good-answer"></div>
     <form class="log-in" id="form">
-
         <div class="log-in__logo-container">
             <img src="./icons/logo.svg" width="207.79px" height="179.94px" />
 
@@ -26,78 +25,87 @@
             <img src="./icons/key.svg" width="26px" height="26px" class="log-in__input__img-password" />
             <div id="badAnswer" class="hidden bad-answer"></div>
 
-            <button class="log-in__button" id="loginBtn" type="submit">Войти</button>
+            <button class="log-in__button" id="loginBtn" type="submit">
+                <span>Войти </span>
+
+                <div class="loader hidden"></div>
+            </button>
         </div>
     </form>
 </body>
 
 <script module>
     /** @type {HTMLInputElement} */
-    const login = document.querySelector("#login")
+    const login = document.querySelector("#login");
     /** @type {HTMLInputElement} */
-    const password = document.querySelector("#password")
+    const password = document.querySelector("#password");
+
     /** @type {HTMLButtonElement} */
-    const loginBtn = document.querySelector("#loginBtn")
+    const loginBtn = document.querySelector("#loginBtn");
+    /** @type {HTMLSpanElement} */
+    const btnText = loginBtn.querySelector("span");
+    /** @type {HTMLDivElement} */
+    const loader = loginBtn.querySelector(".loader");
+
     /** @type {HTMLFormElement} */
-    const form = document.querySelector("#form")
-
-
-
+    const form = document.querySelector("#form");
 
     /** @type {HTMLDivElement} */
-    const goodAnswer = document.querySelector("#goodAnswer")
+    const goodAnswer = document.querySelector("#goodAnswer");
     /** @type {HTMLDivElement} */
-    const badAnswer = document.querySelector("#badAnswer")
-
-
+    const badAnswer = document.querySelector("#badAnswer");
 
     form.addEventListener("submit", (e) => {
-        e.preventDefault()
-        logInAccount()
-    })
+        e.preventDefault();
+        logInAccount();
+    });
 
     login.addEventListener("input", () => {
-        login.removeAttribute("aria-invalid")
-        badAnswer.classList.add("hidden")
-    })
+        login.removeAttribute("aria-invalid");
+        badAnswer.classList.add("hidden");
+    });
 
     password.addEventListener("input", () => {
-        password.removeAttribute("aria-invalid")
-        badAnswer.classList.add("hidden")
-    })
+        password.removeAttribute("aria-invalid");
+        badAnswer.classList.add("hidden");
+    });
 
     async function logInAccount() {
-        login.disabled = true
-        password.disabled = true
-        loginBtn.disabled = true
+        btnText.classList.add("hidden");
+        loader.classList.remove("hidden");
 
-        const resp = await fetch(`https://test-works.pr-uni.ru/api/login/index.php?login=${login.value}&password=${password.value}`)
+        login.disabled = true;
+        password.disabled = true;
+        loginBtn.disabled = true;
+
+        const resp = await fetch(
+            `https://test-works.pr-uni.ru/api/login/index.php?login=${login.value}&password=${password.value}`
+        );
 
         /** @type { { status: "ok", token: string, user: { name: string}} | { status: "error", errorMessage: string} }  */
-        const res = await resp.json()
+        const res = await resp.json();
 
-        if (res.status === 'ok') {
-            document.cookie = `token=${res.token};secure;samesite=strict;max-age=3600`
-            goodAnswer.innerText = `${res.user.name}, Вы успешно авторизованы!`
-            goodAnswer.classList.remove("hidden")
+        if (res.status === "ok") {
+            document.cookie = `token=${res.token};secure;samesite=strict;max-age=3600`;
+            goodAnswer.innerText = `${res.user.name}, Вы успешно авторизованы!`;
+            goodAnswer.classList.remove("hidden");
 
-            form.style = "display:none;"
+            form.style = "display:none;";
         } else {
-            login.ariaInvalid = ""
-            password.ariaInvalid = ""
-            badAnswer.innerText = res.errorMessage
-            badAnswer.classList.remove("hidden")
+            login.ariaInvalid = "";
+            password.ariaInvalid = "";
+            badAnswer.innerText = res.errorMessage;
+            badAnswer.classList.remove("hidden");
         }
 
-        login.disabled = false
-        password.disabled = false
-        loginBtn.disabled = false
+        login.disabled = false;
+        password.disabled = false;
+        loginBtn.disabled = false;
 
+        btnText.classList.remove("hidden");
+        loader.classList.add("hidden");
     }
-
 </script>
-
-
 
 <style scoped>
     *,
@@ -115,6 +123,11 @@
         place-items: center;
     }
 
+    .preloader {
+        width: 40px;
+        height: 40px;
+    }
+
     .hidden {
         display: none;
     }
@@ -126,7 +139,7 @@
         font-size: 12px;
         line-height: 16px;
         text-align: center;
-        color: #F65454;
+        color: #f65454;
     }
 
     .good-answer {
@@ -142,11 +155,10 @@
         flex-direction: column;
         gap: 24px;
         align-items: center;
-        color: #F65454;
+        color: #f65454;
     }
 
     .log-in__logo-container {
-
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -165,6 +177,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 16px;
     }
 
@@ -182,12 +195,12 @@
     }
 
     .log-in__input[aria-invalid] {
-        border: solid 1px #F65454;
-        color: #F65454;
+        border: solid 1px #f65454;
+        color: #f65454;
     }
 
     .log-in__input[aria-invalid]::placeholder {
-        color: #F65454;
+        color: #f65454;
     }
 
     .log-in__input:disabled {
@@ -215,7 +228,8 @@
     }
 
     .log-in__button {
-        align-self: center;
+        display: grid;
+        place-items: center;
         width: 175px;
         height: 48px;
         border: none;
@@ -227,12 +241,33 @@
         font-weight: 500;
         font-size: 14px;
         line-height: 16.41px;
-        text-align: center;
         color: #ffffff;
     }
 
     .log-in__button:hover {
         background: linear-gradient(90deg, #cfaa59 0%, #b7903b 100%);
+    }
+
+    /* HTML: <div class="loader"></div> */
+    .loader {
+        height: 80%;
+        padding: 8px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #ffffff;
+        --_m: conic-gradient(#0000 10%, #000),
+            linear-gradient(#000 0 0) content-box;
+        -webkit-mask: var(--_m);
+        mask: var(--_m);
+        -webkit-mask-composite: source-out;
+        mask-composite: subtract;
+        animation: l3 1s infinite linear;
+    }
+
+    @keyframes l3 {
+        to {
+            transform: rotate(1turn);
+        }
     }
 </style>
 
