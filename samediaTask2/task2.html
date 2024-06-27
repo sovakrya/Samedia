@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div id="goodAnswer" class="hidden good-answer"></div>
+    <form class="log-in" id="form">
+
+        <div class="log-in__logo-container">
+            <img src="./icons/logo.svg" width="207.79px" height="179.94px" />
+
+            <h1 class="log-in__title">Авторизация</h1>
+        </div>
+
+        <div class="log-in__input-container">
+            <input placeholder="Email или телефон" class="log-in__input" id="login" />
+            <img src="./icons/login.svg" width="26px" height="26px" class="log-in__input__img-login" />
+            <input placeholder="Пароль" class="log-in__input" type="password" id="password" />
+            <img src="./icons/key.svg" width="26px" height="26px" class="log-in__input__img-password" />
+            <div id="badAnswer" class="hidden bad-answer"></div>
+
+            <button class="log-in__button" id="loginBtn" type="submit">Войти</button>
+        </div>
+    </form>
+</body>
+
+<script module>
+    /** @type {HTMLInputElement} */
+    const login = document.querySelector("#login")
+    /** @type {HTMLInputElement} */
+    const password = document.querySelector("#password")
+    /** @type {HTMLButtonElement} */
+    const loginBtn = document.querySelector("#loginBtn")
+    /** @type {HTMLFormElement} */
+    const form = document.querySelector("#form")
+
+
+
+
+    /** @type {HTMLDivElement} */
+    const goodAnswer = document.querySelector("#goodAnswer")
+    /** @type {HTMLDivElement} */
+    const badAnswer = document.querySelector("#badAnswer")
+
+
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        logInAccount()
+    })
+
+    login.addEventListener("input", () => {
+        login.removeAttribute("aria-invalid")
+        badAnswer.classList.add("hidden")
+    })
+
+    password.addEventListener("input", () => {
+        password.removeAttribute("aria-invalid")
+        badAnswer.classList.add("hidden")
+    })
+
+    async function logInAccount() {
+        login.disabled = true
+        password.disabled = true
+        loginBtn.disabled = true
+
+        const resp = await fetch(`https://test-works.pr-uni.ru/api/login/index.php?login=${login.value}&password=${password.value}`)
+
+        /** @type { { status: "ok", token: string, user: { name: string}} | { status: "error", errorMessage: string} }  */
+        const res = await resp.json()
+
+        if (res.status === 'ok') {
+            document.cookie = `token=${res.token};secure;samesite=strict;max-age=3600`
+            goodAnswer.innerText = `${res.user.name}, Вы успешно авторизованы!`
+            goodAnswer.classList.remove("hidden")
+
+            form.style = "display:none;"
+        } else {
+            login.ariaInvalid = ""
+            password.ariaInvalid = ""
+            badAnswer.innerText = res.errorMessage
+            badAnswer.classList.remove("hidden")
+        }
+
+        login.disabled = false
+        password.disabled = false
+        loginBtn.disabled = false
+
+    }
+
+</script>
+
+
+
+<style scoped>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        font-weight: normal;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        place-items: center;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .bad-answer {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        color: #F65454;
+    }
+
+    .good-answer {
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        text-align: center;
+        color: #363636;
+    }
+
+    .log-in {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        color: #F65454;
+    }
+
+    .log-in__logo-container {
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .log-in__title {
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 37.5px;
+        text-align: center;
+        color: #363636;
+    }
+
+    .log-in__input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .log-in__input {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        color: #363636;
+        width: 457px;
+        height: 48px;
+        border: solid 1px #00000026;
+        border-radius: 4px;
+        padding: 15px 48px;
+    }
+
+    .log-in__input[aria-invalid] {
+        border: solid 1px #F65454;
+        color: #F65454;
+    }
+
+    .log-in__input[aria-invalid]::placeholder {
+        color: #F65454;
+    }
+
+    .log-in__input:disabled {
+        background-color: #e2e2e2;
+    }
+
+    .log-in__input__img-login {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .log-in__input__img-password {
+        position: absolute;
+        left: 10px;
+        top: 75px;
+    }
+
+    .log-in__input::placeholder {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        color: #00000042;
+    }
+
+    .log-in__button {
+        align-self: center;
+        width: 175px;
+        height: 48px;
+        border: none;
+        padding: 16px, 24px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, #b7903b 0%, #cfaa59 100%);
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16.41px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .log-in__button:hover {
+        background: linear-gradient(90deg, #cfaa59 0%, #b7903b 100%);
+    }
+</style>
+
+</html>
